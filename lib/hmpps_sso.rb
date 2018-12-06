@@ -10,7 +10,8 @@ module OmniAuth
       # Nocov temporary until we get user details from custody API
       info do
         {
-          username: token_info.fetch('user_name')
+          username: token_info.fetch('user_name'),
+          caseload: raw_info.fetch('activeNomisCaseload')
         }
       end
 
@@ -21,6 +22,10 @@ module OmniAuth
 
       def token_info
         access_token.params
+      end
+
+      def raw_info
+        @raw_info ||= Nomis::Custodyapi::Api.fetch_nomis_staff_details
       end
 
       # Without this login with sso breaks.

@@ -14,6 +14,7 @@ describe OmniAuth::Strategies::HmppsSso do
 
   context 'when methods' do
     let(:user_name) { double('user_name') }
+    let(:caseload) { double('activeNomisCaseload') }
 
     let(:token_info) do
       {
@@ -26,9 +27,11 @@ describe OmniAuth::Strategies::HmppsSso do
         allow(strategy).to receive(:token_info).and_return(token_info)
       end
 
-      it 'returns a hash with the user name' do
+      it 'returns a hash with the user name and active prison', vcr: { cassette_name: :raw_info} do
         expect(strategy.info).to eq(
-          username: user_name)
+          username: user_name,
+          caseload: 'LEI'
+        )
       end
     end
   end
