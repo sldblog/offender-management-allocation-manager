@@ -23,6 +23,16 @@ module HmppsApi
 
     attr_reader :sentence_type
 
+    def initialize(fields)
+      @first_name = fields[:first_name]
+      @last_name = fields[:last_name]
+      @offender_no = fields[:offender_no]
+      @convicted_status = fields[:convicted_status]
+      @sentence_type = SentenceType.new(fields[:inprisonment_status])
+      @date_of_birth = fields[:date_of_birth]
+      @early_allocation = false
+    end
+
     def convicted?
       convicted_status == 'Convicted'
     end
@@ -110,6 +120,10 @@ module HmppsApi
       @age ||= birthday_passed ? birth_years_ago : birth_years_ago - 1
     end
 
+    # This list must only contain fields that are both supplied by
+    # https://gateway.t3.nomis-api.hmpps.dsd.io/elite2api/swagger-ui.html#//prisoners/getPrisonersOffenderNo
+    # and also by
+    # https://gateway.t3.nomis-api.hmpps.dsd.io/elite2api/swagger-ui.html#//locations/getOffendersAtLocationDescription
     def load_from_json(payload)
       # It is expected that this method will be called by the subclass which
       # will have been given a payload at the class level, and will call this

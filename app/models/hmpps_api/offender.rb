@@ -9,12 +9,14 @@ module HmppsApi
     attr_reader :reception_date, :prison_id
 
     def initialize(fields = {})
+      super fields
       # Allow this object to be reconstituted from a hash, we can't use
       # from_json as the one passed in will already be using the snake case
       # names whereas from_json is expecting the elite2 camelcase names.
-      fields.each do |k, v|
-        instance_variable_set("@#{k}", v)
-      end
+      @gender = fields[:gender]
+      @booking_id = fields[:booking_id]
+      @prison_id = fields[:prison_id]
+      @reception_date = fields[:reception_date]
     end
 
     def self.from_json(payload)
@@ -23,6 +25,8 @@ module HmppsApi
       }
     end
 
+    # This must only reference fields that are present in
+    # https://gateway.t3.nomis-api.hmpps.dsd.io/elite2api/swagger-ui.html#//prisoners/getPrisonersOffenderNo
     def load_from_json(payload)
       @booking_id = payload['latestBookingId']&.to_i
       @prison_id = payload['latestLocationId']

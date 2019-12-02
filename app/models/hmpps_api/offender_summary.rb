@@ -10,6 +10,13 @@ module HmppsApi
 
     attr_reader :prison_id, :facial_image_id
 
+    def initialize(fields = {})
+      super
+
+      @booking_id = fields[:booking_id]
+      @prison_id = fields[:prison_id]
+    end
+
     def awaiting_allocation_for
       (Time.zone.today - prison_arrival_date.to_date).to_i
     end
@@ -20,6 +27,8 @@ module HmppsApi
       }
     end
 
+    # This list must only contain values that are returned by
+    # https://gateway.t3.nomis-api.hmpps.dsd.io/elite2api/swagger-ui.html#//locations/getOffendersAtLocationDescription
     def load_from_json(payload)
       @booking_id = payload.fetch('bookingId').to_i
       @prison_id = payload.fetch('agencyId')
