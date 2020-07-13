@@ -6,6 +6,7 @@ ruby '2.6.3'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'coffee-rails', '~> 5.0'
 gem 'faraday'
+gem 'faraday_middleware'
 gem 'govuk_notify_rails'
 gem 'gov_uk_date_fields'
 gem 'date_validator'
