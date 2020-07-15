@@ -28,7 +28,7 @@ feature "view an offender's allocation information", :versioning do
       create_allocation(nomis_offender_id_without_keyworker)
     end
 
-    it "displays 'Data not available'", :raven_intercept_exception,
+    it "displays 'Data not available'",
        vcr: { cassette_name: :show_allocation_information_keyworker_not_assigned } do
       visit prison_allocation_path('LEI', nomis_offender_id: nomis_offender_id_without_keyworker)
 

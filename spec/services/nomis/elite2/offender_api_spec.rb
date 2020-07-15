@@ -51,7 +51,7 @@ describe Nomis::Elite2::OffenderApi do
       expect(response).to be_instance_of(Nomis::Offender)
     end
 
-    it 'can get category codes', :raven_intercept_exception,
+    it 'can get category codes',
        vcr: { cassette_name: :offender_api_cat_code_spec } do
       noms_id = 'G4273GI'
       response = described_class.get_category_code(noms_id)
