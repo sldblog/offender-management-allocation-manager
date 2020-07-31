@@ -1,11 +1,12 @@
 require 'simplecov'
 
-SimpleCov.start 'rails' do
-  add_filter 'app/services/nomis/error/'
-  add_filter 'lib/allocation_validation.rb'
-  add_filter 'app/jobs/custom_stats_logging_job.rb'
-  add_filter 'app/admin/'
-  add_group "Services", "app/services"
+unless ENV.fetch('COVERAGE', 1).to_i == 0
+  SimpleCov.start 'rails' do
+    add_filter 'app/services/nomis/error/'
+    add_filter 'lib/allocation_validation.rb'
+    add_filter 'app/jobs/custom_stats_logging_job.rb'
+    add_filter 'app/admin/'
+    add_group "Services", "app/services"
 
   # Try to set this to current coverage levels so that it never goes down after a PR
   # 21 lines uncovered at 99.34% coverage

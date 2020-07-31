@@ -6,6 +6,10 @@ ruby '2.6.3'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'coffee-rails', '~> 5.0'
 gem 'faraday'
+# The versions of this gem seems to be the cause of our flakey VCR tests issue
+# so try pegging it to prevent issues
+# pegging at < 1.13 causes failures
+gem 'ffi', '< 1.12'
 gem 'govuk_notify_rails'
 gem 'gov_uk_date_fields'
 gem 'date_validator'
