@@ -55,7 +55,9 @@ private
     @roles ||= if @sso_identity.present?
                  @sso_identity['roles']
                else
+                 #:nocov:
                  []
+                 #:nocov:
                end
   end
 end

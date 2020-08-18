@@ -47,7 +47,10 @@ private
       if offender.age < 18
         :under18
       elsif offender.civil_sentence?
+        # just not covered by tests
+        #:nocov:
         :civil
+        #:nocov:
       elsif offender.sentenced? == false
         :unsentenced
       end

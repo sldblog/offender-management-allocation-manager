@@ -29,7 +29,11 @@ class OffenderPresenter
     # asking the offender class to calculate it.
     if @responsibility
       if @responsibility.value == Responsibility::PRISON
+        # not covered by tests - and actually not really possible as overrides
+        # only go in one direction at the moment
+        #:nocov:
         ResponsibilityService::RESPONSIBLE
+        #:nocov:
       else
         ResponsibilityService::SUPPORTING
       end

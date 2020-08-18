@@ -22,7 +22,10 @@ module Deserialisable
     self.class.deserialise_date(payload, field)
   end
 
+  # just not used as we have no datetime API fields
+  #:nocov:
   def deserialise_date_and_time(payload, field)
     self.class.deserialise_date_and_time(payload, field)
   end
+  #:nocov:
 end

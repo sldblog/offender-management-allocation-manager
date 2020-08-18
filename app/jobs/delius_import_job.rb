@@ -48,7 +48,10 @@ private
       decoded_attachment_content = attachment.body.decoded.bytes
       Rails.logger.info('[DELIUS] Attachment retrieved')
     else
+      # just not covered by tests
+      #:nocov:
       Rails.logger.error('[DELIUS] Unable to find an attachment')
+      #:nocov:
     end
 
     Rails.logger.info('[DELIUS] cleaning up inbox')
@@ -91,9 +94,12 @@ private
       )
       lines = std_output.split("\n")
       if lines.count > 1
+        # just not covered by tests
+        #:nocov:
         lines.each do |line| logger.error(line) end
 
         raise lines.last
+        #:nocov:
       end
 
       Rails.logger.info('[DELIUS] Attachment decrypted')

@@ -27,7 +27,10 @@ module OffenderHelper
     type = (event.include? 'primary_pom') ? 'POM ' : 'Co-working POM '
 
     if event.include? 'reallocate'
+      # just not covered by tests
+      #:nocov:
       type + 're-allocated'
+      #:nocov:
     elsif event.include? 'deallocate'
       type + 'removed'
     elsif event.include? 'allocate'

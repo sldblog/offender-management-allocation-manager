@@ -17,9 +17,9 @@ module Nomis
         key = "pom_list_#{prison}"
 
         data = Rails.cache.fetch(key, expires_in: Rails.configuration.cache_expiry) {
-          e2_client.get(route,  extra_headers: paging_options { |result|
-            raise Nomis::Client::APIError, 'No data was returned' if result.empty?
-          })
+          e2_client.get(route,  extra_headers: paging_options) { |result|
+            raise Nomis::Client::APIError, 'No data was returned' if result.nil?
+          }
         }
 
         api_deserialiser.deserialise_many(Nomis::PrisonOffenderManager, data)

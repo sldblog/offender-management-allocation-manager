@@ -21,7 +21,10 @@ class PrisonersController < PrisonsApplicationController
     end
 
     if @allocation.present? && @allocation.secondary_pom_name.present?
+      # Just not covered by tests
+      #:nocov:
       @secondary_pom_name = helpers.fetch_pom_name(@allocation.secondary_pom_nomis_id).titleize
+      #:nocov:
     end
 
     @pom_responsibility = @prisoner.pom_responsibility
