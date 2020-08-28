@@ -8,11 +8,12 @@ unless ENV.fetch('COVERAGE', 1).to_i == 0
     add_filter 'app/admin/'
     add_group "Services", "app/services"
 
-  # Try to set this to current coverage levels so that it never goes down after a PR
-  # 21 lines uncovered at 99.34% coverage
-  minimum_coverage 99.34
-  # sometimes coverage drops between branches - don't fail in these cases
-  maximum_coverage_drop 0.5
+    # Try to set this to current coverage levels so that it never goes down after a PR
+    # 21 lines uncovered at 99.34% coverage
+    minimum_coverage 99.34
+    # sometimes coverage drops between branches - don't fail in these cases
+    maximum_coverage_drop 0.5
+  end
 end
 
 if ENV['CIRCLE_ARTIFACTS']
