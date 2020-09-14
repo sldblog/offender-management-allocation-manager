@@ -7,7 +7,7 @@ class UpdateTeamNameAndLduService
     end
     # If there is a code-less team with this name, match to it as it used to be a 'shadow-only' team
     existing_team = Team.find_by(name: team_name)
-    if existing_team.present? && existing_team.code.nil?
+    if existing_team.present? && existing_team.code.blank?
       existing_team.assign_attributes(code: team_code, local_divisional_unit: ldu)
       existing_team.save! if existing_team.changed?
     else

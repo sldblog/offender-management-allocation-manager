@@ -105,7 +105,7 @@ RSpec.describe UpdateTeamNameAndLduService do
 
   context 'when a shadow team of the same name exists' do
     before do
-      create(:team, code: nil, local_divisional_unit: nil)
+      create(:team, code: '', local_divisional_unit: nil)
       create(:local_divisional_unit)
     end
 
