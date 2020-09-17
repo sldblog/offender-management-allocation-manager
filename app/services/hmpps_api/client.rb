@@ -11,9 +11,19 @@ module HmppsApi
       @root = root
       @log404 = log404
       @connection = Faraday.new do |faraday|
-        faraday.request :retry, max: 3, interval: 0.05,
-                                interval_randomness: 0.5, backoff_factor: 2,
-                                exceptions: [Faraday::ClientError, 'Timeout::Error']
+        faraday.request :retry,
+                        # increase the default number of retries from 2 to 3 for some reason
+                        max: 3,
+                        # some useful values as per the Faraday documentation
+                        # https://lostisland.github.io/faraday/middleware/retry
+                        # for some reason this middleware doesn't provide sensible defaults
+                        # but does have some good suggestions in the documentation
+                        interval: 0.05,
+                        interval_randomness: 0.5,
+                        backoff_factor: 2,
+                        # we seem to get 502 and 504 statuses from a gateway this side of
+                        # the Prison API - so retry if we get one of those.
+                        retry_statuses: [502, 504]
 
         faraday.options.params_encoder = Faraday::FlatParamsEncoder
         faraday.use Faraday::Response::RaiseError
