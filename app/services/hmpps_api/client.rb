@@ -11,8 +11,8 @@ module HmppsApi
       @root = root
       @log404 = log404
       retry_options = {
-          # increase the default number of retries from 2 to 5 as 3 doesn't seem to be enough
-          max: 5,
+          # increase the default number of retries from 2 to 10 as 3 doesn't seem to be enough
+          max: 10,
           # some useful values as per the Faraday documentation
           # https://lostisland.github.io/faraday/middleware/retry
           # for some reason this middleware doesn't provide sensible defaults
