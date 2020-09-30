@@ -81,7 +81,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'flamegraph'
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'listen', '>= 3.0.5', '< 3.3'
   gem 'memory_profiler'
   gem 'rack-mini-profiler'
   gem 'spring-watcher-listen', '~> 2.0.0'
