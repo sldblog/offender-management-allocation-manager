@@ -10,6 +10,7 @@ require 'support/helpers/jwt_helper'
 require 'support/helpers/features_helper'
 require 'support/helpers/auth_helper'
 require 'support/helpers/api_helper'
+require 'support/helpers/community_api_helper'
 require 'capybara/rspec'
 require 'webmock/rspec'
 require 'paper_trail/frameworks/rspec'
@@ -68,6 +69,7 @@ RSpec.configure do |config|
   config.include FeaturesHelper
   config.include AuthHelper
   config.include ApiHelper
+  config.include CommunityApiHelper
 
   config.after(:each, :raven_intercept_exception) do
     Rails.configuration.sentry_dsn = nil
